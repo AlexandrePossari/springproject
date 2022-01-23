@@ -26,6 +26,7 @@ public class UserController {
         userEntity.setEmail(userRequest.getEmail());
         userEntity.setPassword(userRequest.getPassword());
 
+
         userEntity = createPostUseCase.create(userEntity);
         UserResponse userResponse = new UserResponse();
         userResponse.setNome(userEntity.getNome());
