@@ -3,7 +3,7 @@ package com.alexandrepossari.springproject.adapter.in.web.user.v1;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.request.UserRequest;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.response.UserResponse;
 import com.alexandrepossari.springproject.application.domain.UserEntity;
-import com.alexandrepossari.springproject.application.port.in.CreatePostUseCase;
+import com.alexandrepossari.springproject.application.port.in.CreateUserUseCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/posts")
 public class UserController {
-    private final CreatePostUseCase createPostUseCase;
+    private final CreateUserUseCase createUserUseCase;
 
-    public UserController(CreatePostUseCase createPostUseCase) {
-        this.createPostUseCase = createPostUseCase;
+    public UserController(CreateUserUseCase createUserUseCase) {
+        this.createUserUseCase = createUserUseCase;
     }
 
     @PostMapping
@@ -27,7 +27,7 @@ public class UserController {
         userEntity.setPassword(userRequest.getPassword());
 
 
-        userEntity = createPostUseCase.create(userEntity);
+        userEntity = createUserUseCase.create(userEntity);
         UserResponse userResponse = new UserResponse();
         userResponse.setNome(userEntity.getNome());
         userResponse.setEmail(userEntity.getEmail());
