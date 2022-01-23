@@ -1,7 +1,10 @@
 package com.alexandrepossari.springproject.adapter.in.web.user.v1;
 
+import com.alexandrepossari.springproject.adapter.in.web.user.v1.request.UserLoginRequest;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.request.UserRequest;
+import com.alexandrepossari.springproject.adapter.in.web.user.v1.response.UserLoginResponse;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.response.UserResponse;
+import com.alexandrepossari.springproject.application.domain.User;
 import com.alexandrepossari.springproject.application.domain.UserEntity;
 import com.alexandrepossari.springproject.application.port.in.CreatePostUseCase;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +23,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> post(@RequestBody UserRequest userRequest){
+    public ResponseEntity<UserResponse> post(@RequestBody UserRequest userRequest) {
         UserEntity userEntity = new UserEntity();
         userEntity.setNome(userRequest.getNome());
         userEntity.setEmail(userRequest.getEmail());
@@ -34,6 +37,13 @@ public class UserController {
         userResponse.setId(userEntity.getId());
 
         return ResponseEntity.ok(userResponse);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<UserLoginResponse> login(@RequestBody UserLoginRequest userLoginRequest){
+        User user = new User();
+        user.setEmail(userLoginRequest.getEmail());
+        user.setPassword(userLoginRequest.getPassword());
     }
 
 }
