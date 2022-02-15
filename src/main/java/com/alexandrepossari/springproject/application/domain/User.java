@@ -1,17 +1,9 @@
 package com.alexandrepossari.springproject.application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
-public class UserEntity {
+public class User {
     private String email;
     private String password;
     private String nome;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     public String getEmail() {

@@ -2,7 +2,7 @@ package com.alexandrepossari.springproject.adapter.in.web.user.v1;
 
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.request.UserRequest;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.response.UserResponse;
-import com.alexandrepossari.springproject.application.domain.UserEntity;
+import com.alexandrepossari.springproject.adapter.out.mysql.entity.UserEntity;
 import com.alexandrepossari.springproject.application.port.in.CreateUserUseCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/v1/posts")
+@RequestMapping("/v1/users")
 public class UserController {
     private final CreateUserUseCase createUserUseCase;
 
@@ -35,5 +35,6 @@ public class UserController {
 
         return ResponseEntity.ok(userResponse);
     }
+
 
 }

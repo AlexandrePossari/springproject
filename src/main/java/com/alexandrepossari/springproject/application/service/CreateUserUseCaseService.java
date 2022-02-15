@@ -1,7 +1,7 @@
 package com.alexandrepossari.springproject.application.service;
 
-import com.alexandrepossari.springproject.adapter.out.mysql.UserRepository;
-import com.alexandrepossari.springproject.application.domain.UserEntity;
+import com.alexandrepossari.springproject.adapter.out.mysql.repository.UserRepository;
+import com.alexandrepossari.springproject.adapter.out.mysql.entity.UserEntity;
 import com.alexandrepossari.springproject.application.port.in.CreateUserUseCase;
 import org.springframework.stereotype.Service;
 
