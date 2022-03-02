@@ -1,5 +1,7 @@
 package com.alexandrepossari.springproject.application.domain;
 
+import java.time.LocalDateTime;
+
 public class User {
     private String email;
     private String password;
@@ -36,5 +38,34 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public static class Builder {
+        private User user = new User();
+
+        public Builder id(long id) {
+            user.setId(id);
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            user.setNome(nome);
+            return this;
+        }
+
+        public Builder email(String email) {
+            user.setEmail(email);
+            return this;
+        }
+
+        public Builder password(String password) {
+            user.setPassword(password);
+            return this;
+        }
+
+        public User build() {
+            return user;
+        }
+
     }
 }

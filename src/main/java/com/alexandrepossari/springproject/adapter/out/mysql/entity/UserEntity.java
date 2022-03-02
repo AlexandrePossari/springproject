@@ -45,4 +45,32 @@ public class UserEntity {
     public void setId(long id) {
         this.id = id;
     }
+
+    public static class Builder {
+        private final UserEntity entity = new UserEntity();
+
+        public Builder id(long id) {
+            entity.setId(id);
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            entity.setNome(nome);
+            return this;
+        }
+
+        public Builder email(String email) {
+            entity.setEmail(email);
+            return this;
+        }
+
+        public Builder password(String password) {
+            entity.setPassword(password);
+            return this;
+        }
+
+        public UserEntity build() {
+            return entity;
+        }
+    }
 }

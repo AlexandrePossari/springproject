@@ -1,20 +1,30 @@
 package com.alexandrepossari.springproject.application.service;
 
-import com.alexandrepossari.springproject.adapter.out.mysql.repository.UserRepository;
-import com.alexandrepossari.springproject.adapter.out.mysql.entity.UserEntity;
+import com.alexandrepossari.springproject.application.domain.User;
+import com.alexandrepossari.springproject.application.exception.EntityNotFoundException;
+import com.alexandrepossari.springproject.application.exception.ErrorReason;
 import com.alexandrepossari.springproject.application.port.in.CreateUserUseCase;
+import com.alexandrepossari.springproject.application.port.out.UserRepositoryPort;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateUserUseCaseService implements CreateUserUseCase {
-    private final UserRepository userRepository;
+    private final UserRepositoryPort repositoryPort;
 
-    public CreateUserUseCaseService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public CreateUserUseCaseService(UserRepositoryPort repositoryPort) {
+        this.repositoryPort = repositoryPort;
     }
 
     @Override
-    public UserEntity create(UserEntity userEntity){
-        return userRepository.save(userEntity);
+    public User create(User user){
+        return repositoryPort.save(user);
     }
+
+    @Override
+    public User getById(long id) {
+        return repositoryPort.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(ErrorReason.USER_NOT_FOUND));
+    }
+
+
 }

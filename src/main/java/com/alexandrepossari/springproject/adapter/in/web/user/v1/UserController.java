@@ -3,6 +3,7 @@ package com.alexandrepossari.springproject.adapter.in.web.user.v1;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.request.UserRequest;
 import com.alexandrepossari.springproject.adapter.in.web.user.v1.response.UserResponse;
 import com.alexandrepossari.springproject.adapter.out.mysql.entity.UserEntity;
+import com.alexandrepossari.springproject.application.domain.User;
 import com.alexandrepossari.springproject.application.port.in.CreateUserUseCase;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,17 +22,17 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserResponse> post(@RequestBody UserRequest userRequest){
-        UserEntity userEntity = new UserEntity();
-        userEntity.setNome(userRequest.getNome());
-        userEntity.setEmail(userRequest.getEmail());
-        userEntity.setPassword(userRequest.getPassword());
+        User user = new User();
+        user.setNome(userRequest.getNome());
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(userRequest.getPassword());
 
 
-        userEntity = createUserUseCase.create(userEntity);
+        user = createUserUseCase.create(user);
         UserResponse userResponse = new UserResponse();
-        userResponse.setNome(userEntity.getNome());
-        userResponse.setEmail(userEntity.getEmail());
-        userResponse.setId(userEntity.getId());
+        userResponse.setNome(user.getNome());
+        userResponse.setEmail(user.getEmail());
+        userResponse.setId(user.getId());
 
         return ResponseEntity.ok(userResponse);
     }
