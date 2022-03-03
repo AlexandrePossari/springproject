@@ -1,17 +1,11 @@
 package com.alexandrepossari.springproject.application.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.time.LocalDateTime;
 
-@Entity
-public class UserEntity {
+public class User {
     private String email;
     private String password;
     private String nome;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     public String getEmail() {
@@ -44,5 +38,34 @@ public class UserEntity {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public static class Builder {
+        private User user = new User();
+
+        public Builder id(long id) {
+            user.setId(id);
+            return this;
+        }
+
+        public Builder nome(String nome) {
+            user.setNome(nome);
+            return this;
+        }
+
+        public Builder email(String email) {
+            user.setEmail(email);
+            return this;
+        }
+
+        public Builder password(String password) {
+            user.setPassword(password);
+            return this;
+        }
+
+        public User build() {
+            return user;
+        }
+
     }
 }
