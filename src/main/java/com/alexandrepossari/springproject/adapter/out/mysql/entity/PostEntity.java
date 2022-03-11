@@ -36,4 +36,28 @@ public class PostEntity {
     public void setContent(String content) {
         this.content = content;
     }
+
+    public static class Builder {
+        private final PostEntity entity = new PostEntity();
+
+        public PostEntity.Builder content(String content) {
+            entity.setContent(content);
+            return this;
+        }
+
+        public PostEntity.Builder id(long id) {
+            entity.setId(id);
+            return this;
+        }
+
+        public PostEntity.Builder userEntity(UserEntity userEntity) {
+            entity.setUserEntity(userEntity);
+            return this;
+        }
+
+
+        public PostEntity build() {
+            return entity;
+        }
+    }
 }
