@@ -1,6 +1,7 @@
 package com.alexandrepossari.springproject.application.service;
 
 import com.alexandrepossari.springproject.application.domain.User;
+import com.alexandrepossari.springproject.application.exception.EntityAlreadyRegisteredException;
 import com.alexandrepossari.springproject.application.exception.EntityNotFoundException;
 import com.alexandrepossari.springproject.application.exception.ErrorReason;
 import com.alexandrepossari.springproject.application.port.in.CreateUserUseCase;
@@ -17,6 +18,7 @@ public class CreateUserUseCaseService implements CreateUserUseCase {
 
     @Override
     public User create(User user){
+        validateEmailAlreadyRegistered(user.getEmail());
         return repositoryPort.save(user);
     }
 
@@ -26,5 +28,10 @@ public class CreateUserUseCaseService implements CreateUserUseCase {
                 .orElseThrow(() -> new EntityNotFoundException(ErrorReason.USER_NOT_FOUND));
     }
 
+    private void validateEmailAlreadyRegistered(String email) throws EntityAlreadyRegisteredException {
+        if (repositoryPort.findUserByEmail(email).isPresent()) {
+            throw new EntityAlreadyRegisteredException(ErrorReason.USER_EMAIL_ALREADY_REGISTERED);
+        }
+    }
 
 }

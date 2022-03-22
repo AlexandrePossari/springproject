@@ -35,4 +35,13 @@ public class UserRepositoryPortService implements UserRepositoryPort {
         return Optional.of(mapper.toDomain(userOp.get()));
     }
 
+    @Override
+    public Optional<User> findUserByEmail(String email) {
+        var userOp = repository.findByEmail(email);
+        if (userOp.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(mapper.toDomain(userOp.get()));
+    }
+
 }

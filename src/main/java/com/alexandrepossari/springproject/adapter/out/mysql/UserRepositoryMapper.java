@@ -27,8 +27,4 @@ public class UserRepositoryMapper {
                 .build();
     }
 
-    public List<User> toDomain(List<UserEntity> customers) {
-        return customers.stream().map(this::toDomain)
-                .collect(Collectors.toList());
-    }
 }

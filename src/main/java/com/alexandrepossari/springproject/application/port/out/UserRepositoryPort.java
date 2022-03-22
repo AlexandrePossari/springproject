@@ -9,4 +9,6 @@ public interface UserRepositoryPort {
 
     Optional<User> findById(long id);
 
+    Optional<User> findUserByEmail(String email);
+
 }
